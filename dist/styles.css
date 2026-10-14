@@ -81,10 +81,11 @@ h1 { max-width: 760px; margin: 16px 0 15px; font-size: clamp(25px, 3vw, 39px); l
 .half-blur { position: absolute; z-index: 2; inset: 0; background: linear-gradient(to bottom, rgba(10,20,31,.08), rgba(10,20,31,.2) 55%, rgba(10,20,31,.68)); pointer-events: none; }
 .blur-label { position: absolute; z-index: 4; left: 50%; bottom: 91px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 28px); padding: 6px 9px; color: #dbe5ef; border: 1px solid rgba(255,255,255,.24); background: rgba(14,32,52,.72); backdrop-filter: blur(8px); font: 9px var(--mono); letter-spacing: .12em; text-align: center; }
 .blur-label span { color: var(--green); }
-.reveal-button { position: absolute; z-index: 5; left: 50%; bottom: 24px; width: min(380px, calc(100% - 30px)); transform: translateX(-50%); display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 11px; padding: 12px 14px; border: 1px solid rgba(255,255,255,.38); background: rgba(24,55,89,.94); color: #fff; cursor: pointer; text-align: left; box-shadow: 0 12px 35px rgba(4,16,29,.34); backdrop-filter: blur(12px); transition: .2s ease; }
+.reveal-button { position: absolute; z-index: 5; left: 50%; bottom: 24px; width: min(220px, calc(100% - 30px)); transform: translateX(-50%); display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 18px; padding: 13px 16px; border: 1px solid rgba(255,255,255,.38); background: rgba(24,55,89,.94); color: #fff; cursor: pointer; text-align: left; box-shadow: 0 12px 35px rgba(4,16,29,.34); backdrop-filter: blur(12px); transition: .2s ease; }
 .reveal-button:hover { border-color: #fff; background: #173e69; box-shadow: 0 15px 40px rgba(4,16,29,.44); transform: translate(-50%,-2px); }
 .button-eye { width: 32px; height: 32px; display: grid; place-items: center; color: #dbeaff; border: 1px solid rgba(255,255,255,.28); border-radius: 50%; font-size: 13px; }
 .button-icon { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid #396946; color: var(--green); font-size: 20px; }
+.button-text { font: 700 12px var(--mono); letter-spacing: .12em; }
 .reveal-button b { display: block; font: 600 11px var(--mono); letter-spacing: .1em; }
 .reveal-button small { color: #7f8e84; font-size: 12px; }
 .reveal-button .arrow { color: var(--green); font-size: 22px; }
@@ -217,8 +218,7 @@ body.modal-open { overflow: hidden; }
   .post-body { padding: 0 16px 17px; }
   .evidence-card { height: 255px; }
   .blur-label { bottom: 86px; font-size: 8px; }
-  .reveal-button { bottom: 19px; width: calc(100% - 24px); grid-template-columns: 30px 1fr auto; }
-  .reveal-button small { font-size: 10px; }
+  .reveal-button { bottom: 19px; width: min(190px, calc(100% - 24px)); grid-template-columns: 1fr auto; }
   .sidebar { grid-template-columns: 1fr; }
   .simulation { padding: 10px; }
   .sim-header { align-items: center; }
