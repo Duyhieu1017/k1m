@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=5" />
+  <link rel="stylesheet" href="./styles.css?v=7" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -66,21 +66,20 @@
               <p>Bên trong có vẻ là bản sao tin nhắn và thư viện ảnh — mình đã che toàn bộ phần nhạy cảm.</p>
             </div>
 
-            <figure class="evidence-card" aria-label="Ảnh bằng chứng đã được làm mờ">
+            <figure class="evidence-card" aria-label="Ảnh bằng chứng bị che một phần">
               <div class="blur-art" aria-hidden="true">
+                <div class="evidence-stamp">PRIVATE ARCHIVE // 01</div>
                 <div class="phone-silhouette"><div class="screen-lines"></div></div>
                 <div class="data-column"></div>
               </div>
-              <div class="blur-label"><span>◉</span> NỘI DUNG ĐÃ CHE MỜ</div>
+              <div class="half-blur" aria-hidden="true"></div>
+              <div class="blur-label"><span>◉</span> PHẦN CÒN LẠI ĐÃ BỊ ẨN</div>
+              <button class="reveal-button" type="button">
+                <span class="button-eye">◉</span>
+                <span><b>XEM PHẦN CÒN LẠI</b><small>Nội dung nhạy cảm · Nhấn để mở</small></span>
+                <span class="arrow">→</span>
+              </button>
             </figure>
-
-            <button id="revealButton" class="reveal-button">
-              <!-- <span class="button-icon">⌁</span> -->
-              <span><b>XEM THÊM</b>
-                <!-- <small>Mở phần nội dung bị ẩn</small> -->
-              </span>
-              <span class="arrow">→</span>
-            </button>
 
             <footer class="post-footer">
               <button>♡ Thích</button><button>↩ Trả lời</button>
@@ -108,21 +107,20 @@
               <p>Bên trong có vẻ là bản sao tin nhắn và thư viện ảnh — mình đã che toàn bộ phần nhạy cảm.</p>
             </div>
 
-            <figure class="evidence-card" aria-label="Ảnh bằng chứng đã được làm mờ">
+            <figure class="evidence-card" aria-label="Ảnh bằng chứng bị che một phần">
               <div class="blur-art" aria-hidden="true">
+                <div class="evidence-stamp">PRIVATE ARCHIVE // 02</div>
                 <div class="phone-silhouette"><div class="screen-lines"></div></div>
                 <div class="data-column"></div>
               </div>
-              <div class="blur-label"><span>◉</span> NỘI DUNG ĐÃ CHE MỜ</div>
+              <div class="half-blur" aria-hidden="true"></div>
+              <div class="blur-label"><span>◉</span> PHẦN CÒN LẠI ĐÃ BỊ ẨN</div>
+              <button class="reveal-button" type="button">
+                <span class="button-eye">◉</span>
+                <span><b>XEM PHẦN CÒN LẠI</b><small>Nội dung nhạy cảm · Nhấn để mở</small></span>
+                <span class="arrow">→</span>
+              </button>
             </figure>
-
-            <button id="revealButton" class="reveal-button">
-              <!-- <span class="button-icon">⌁</span> -->
-              <span><b>XEM THÊM</b>
-                <!-- <small>Mở phần nội dung bị ẩn</small> -->
-              </span>
-              <span class="arrow">→</span>
-            </button>
 
             <footer class="post-footer">
               <button>♡ Thích</button><button>↩ Trả lời</button>
@@ -172,7 +170,7 @@
     <section class="sim-panel" role="dialog" aria-modal="true" aria-labelledby="simTitle">
       <header class="sim-header">
         <div class="sim-status"><span></span> <b id="sessionStatus">REMOTE SESSION // ACTIVE</b></div>
-        <button id="safeExit" class="safe-exit">THOÁT DIỄN TẬP <kbd>ESC</kbd></button>
+        <button id="safeExit" class="safe-exit" hidden>THOÁT DIỄN TẬP <kbd>ESC</kbd></button>
       </header>
       <div id="scanView" class="terminal-grid scan-view">
         <div class="terminal-copy">
@@ -199,10 +197,10 @@
           <h2 class="glitch-title" data-text="DỮ LIỆU ĐÃ BỊ SAO CHÉP">DỮ LIỆU ĐÃ BỊ SAO CHÉP</h2>
           <p class="complete-note">Thiết bị đã bị đánh dấu trong phiên mô phỏng. Các con số bên dưới hoàn toàn giả lập — không có dữ liệu thật nào được truy cập.</p>
           <div class="stolen-grid" aria-label="Số liệu mô phỏng">
-            <div><span>HÌNH ẢNH</span><b>1,261</b><small>FILES</small></div>
-            <div><span>DANH BẠ</span><b>438</b><small>CONTACTS</small></div>
-            <div><span>TIN NHẮN</span><b>2,904</b><small>MESSAGES</small></div>
-            <div><span>VỊ TRÍ</span><b>18</b><small>POINTS</small></div>
+            <div><span>HÌNH ẢNH</span><b>1,261</b></div>
+            <div><span>DANH BẠ</span><b>438</b></div>
+            <div><span>TIN NHẮN</span><b>2,904</b></div>
+            <div><span>VỊ TRÍ</span><b>18</b></div>
           </div>
           <div class="malware-log" aria-label="Nhật ký mã độc mô phỏng">
             <p><em>[DONE]</em> archive/private_media.enc</p>
@@ -217,7 +215,7 @@
         </div>
       </div>
       <footer class="sim-footer">
-        <span id="footerStatus">CONNECTION_STATUS = PASSED</span>
+        <span id="footerStatus">CONNECTION_STATUS = 200</span>
         <span id="footerRequests">SIMULATION_ONLY = TRUE</span>
         <button id="lessonButton" class="lesson-button" hidden>XEM BÀI HỌC AN TOÀN</button>
       </footer>
@@ -230,6 +228,6 @@
     <div><strong id="lessonTitle">Bạn vừa gặp một “curiosity trap”</strong><p>Nội dung bị che + nút “xem thêm” + cảnh báo giả là chuỗi thao túng phổ biến. Hãy đóng tab, không cấp quyền và kiểm tra tải xuống.</p></div>
   </div>
 
-  <script src="./script.js?v=5"></script>
+  <script src="./script.js?v=7"></script>
 </body>
 </html>

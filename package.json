@@ -2,7 +2,7 @@
   "name": "voz-shadow-forum",
   "private": true,
   "scripts": {
-    "dev": "vite dist --host --open",
+    "dev": "vite --host --open",
     "preview": "vite preview --outDir dist --host"
   },
   "devDependencies": {

@@ -1,4 +1,5 @@
-const revealButton = document.querySelector('#revealButton');
+const revealButtons = [...document.querySelectorAll('.reveal-button')];
+let activeRevealButton = revealButtons[0];
 const simulation = document.querySelector('#simulation');
 const safeExit = document.querySelector('#safeExit');
 const lessonButton = document.querySelector('#lessonButton');
@@ -32,7 +33,8 @@ const logLines = [
   '> connection status: connected',
   '> permissions granted: success',
   '> local files accessed: 1261',
-  '> phone number detected: 1261',
+  '> phone number detected: 438',
+  '> sms detected: 2904',
   '> outbound requests: 1817',
   '> data transferred: 100%'
 ];
@@ -91,11 +93,14 @@ function closeSimulation(showLesson = false) {
   simulation.hidden = true;
   simulation.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
-  revealButton.focus();
+  activeRevealButton?.focus();
   if (showLesson) lessonToast.hidden = false;
 }
 
-revealButton.addEventListener('click', openSimulation);
+revealButtons.forEach(button => button.addEventListener('click', () => {
+  activeRevealButton = button;
+  openSimulation();
+}));
 safeExit.addEventListener('click', () => closeSimulation(true));
 lessonButton.addEventListener('click', () => closeSimulation(true));
 lessonClose.addEventListener('click', () => { lessonToast.hidden = true; });
