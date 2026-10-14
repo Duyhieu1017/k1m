@@ -72,13 +72,13 @@ h1 { max-width: 760px; margin: 16px 0 15px; font-size: clamp(25px, 3vw, 39px); l
 .collapsed-copy { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .evidence-card { position: relative; height: 320px; margin: 24px 0 14px; overflow: hidden; border: 1px solid #2b3930; background: #090c0a; }
 .blur-art { position: absolute; inset: 0; overflow: hidden; background: #151b22; opacity: 1; }
-.evidence-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; filter: saturate(.82) contrast(1.04); transform: scale(1.015); }
+.evidence-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; filter: blur(12px) saturate(.72) contrast(1.03); transform: scale(1.09); }
 .evidence-photo--alt { object-position: center 48%; }
 .evidence-stamp { position: absolute; top: 15px; right: 16px; z-index: 2; padding: 6px 8px; color: rgba(239,246,241,.78); border: 1px solid rgba(239,246,241,.25); background: rgba(4,10,6,.28); font: 9px var(--mono); letter-spacing: .12em; }
 .phone-silhouette { position: absolute; width: 150px; height: 245px; left: 20%; top: 35px; border: 12px solid #616a64; border-radius: 24px; background: #0b0e0c; transform: rotate(-9deg); box-shadow: 70px 18px 70px rgba(74,255,120,.19); }
 .screen-lines { margin: 34px 15px; height: 110px; background: repeating-linear-gradient(180deg,#6b8a73 0 7px,transparent 7px 20px); }
 .data-column { position: absolute; right: 12%; top: 25%; width: 35%; height: 50%; background: repeating-linear-gradient(180deg,rgba(108,255,143,.7) 0 3px,transparent 3px 15px); }
-.half-blur { position: absolute; z-index: 2; left: 0; right: 0; top: 38%; bottom: 0; backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); mask-image: linear-gradient(to bottom, transparent 0, rgba(0,0,0,.58) 24%, #000 56%); -webkit-mask-image: linear-gradient(to bottom, transparent 0, rgba(0,0,0,.58) 24%, #000 56%); background: linear-gradient(to bottom, transparent, rgba(10,20,31,.27) 40%, rgba(10,20,31,.76)); }
+.half-blur { position: absolute; z-index: 2; inset: 0; background: linear-gradient(to bottom, rgba(10,20,31,.08), rgba(10,20,31,.2) 55%, rgba(10,20,31,.68)); pointer-events: none; }
 .blur-label { position: absolute; z-index: 4; left: 50%; bottom: 91px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 28px); padding: 6px 9px; color: #dbe5ef; border: 1px solid rgba(255,255,255,.24); background: rgba(14,32,52,.72); backdrop-filter: blur(8px); font: 9px var(--mono); letter-spacing: .12em; text-align: center; }
 .blur-label span { color: var(--green); }
 .reveal-button { position: absolute; z-index: 5; left: 50%; bottom: 24px; width: 156px; max-width: calc(100% - 30px); transform: translateX(-50%); display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 14px; border: 1px solid rgba(255,255,255,.38); background: rgba(24,55,89,.94); color: #fff; cursor: pointer; text-align: left; box-shadow: 0 12px 35px rgba(4,16,29,.34); backdrop-filter: blur(12px); transition: .2s ease; }
