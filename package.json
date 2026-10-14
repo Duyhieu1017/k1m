@@ -1,0 +1,11 @@
+{
+  "name": "voz-shadow-forum",
+  "private": true,
+  "scripts": {
+    "dev": "vite dist --host --open",
+    "preview": "vite preview --outDir dist --host"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}

@@ -8,16 +8,11 @@
   <title>Shadow Board — Diễn tập an toàn số</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css?v=5" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
-  <div class="drill-bar" role="status">
-    <span class="pulse"></span>
-    <strong>MÔ PHỎNG DIỄN TẬP</strong>
-    <span>Không có dữ liệu nào được đọc, gửi hoặc lưu.</span>
-  </div>
 
   <header class="site-header">
     <div class="shell nav-row">
@@ -80,8 +75,52 @@
             </figure>
 
             <button id="revealButton" class="reveal-button">
-              <span class="button-icon">⌁</span>
-              <span><b>XEM THÊM</b><small>Mở phần nội dung bị ẩn</small></span>
+              <!-- <span class="button-icon">⌁</span> -->
+              <span><b>XEM THÊM</b>
+                <!-- <small>Mở phần nội dung bị ẩn</small> -->
+              </span>
+              <span class="arrow">→</span>
+            </button>
+
+            <footer class="post-footer">
+              <button>♡ Thích</button><button>↩ Trả lời</button>
+              <span>Đã chỉnh sửa: 02:21</span>
+            </footer>
+          </div>
+        </article>
+
+        <article class="post-card">
+          <aside class="profile">
+            <div class="avatar" aria-hidden="true"><span>0x</span></div>
+            <a class="username" href="#">zero.day</a>
+            <span class="rank">SENIOR MEMBER</span>
+            <div class="reputation"><span></span> verified node</div>
+            <dl>
+              <div><dt>Bài viết</dt><dd>1,337</dd></div>
+              <div><dt>Tham gia</dt><dd>04/2021</dd></div>
+            </dl>
+          </aside>
+
+          <div class="post-body">
+            <header class="post-meta"><time>Hôm nay lúc 02:17</time><a href="#post-1">#1</a></header>
+            <div class="post-copy collapsed-copy">
+              <p>Anh em check giúp mình gói dump này, thấy xuất hiện sau khi cắm máy vào một trạm sạc công cộng.</p>
+              <p>Bên trong có vẻ là bản sao tin nhắn và thư viện ảnh — mình đã che toàn bộ phần nhạy cảm.</p>
+            </div>
+
+            <figure class="evidence-card" aria-label="Ảnh bằng chứng đã được làm mờ">
+              <div class="blur-art" aria-hidden="true">
+                <div class="phone-silhouette"><div class="screen-lines"></div></div>
+                <div class="data-column"></div>
+              </div>
+              <div class="blur-label"><span>◉</span> NỘI DUNG ĐÃ CHE MỜ</div>
+            </figure>
+
+            <button id="revealButton" class="reveal-button">
+              <!-- <span class="button-icon">⌁</span> -->
+              <span><b>XEM THÊM</b>
+                <!-- <small>Mở phần nội dung bị ẩn</small> -->
+              </span>
               <span class="arrow">→</span>
             </button>
 
@@ -106,7 +145,7 @@
       </section>
 
       <aside class="sidebar" id="about">
-        <section class="side-card warning-card">
+        <!-- <section class="side-card warning-card">
           <div class="eyebrow">SAFETY BRIEF // 01</div>
           <h2>Dấu hiệu cần dừng lại</h2>
           <ul>
@@ -114,7 +153,7 @@
             <li>Giả lập tiến trình để tạo hoảng loạn</li>
             <li>Ngăn người dùng rời trang</li>
           </ul>
-        </section>
+        </section> -->
         <section class="side-card stats-card">
           <div><span>PHẢN HỒI</span><b>02</b></div>
           <div><span>ĐANG XEM</span><b>19</b></div>
@@ -123,39 +162,64 @@
       </aside>
     </div>
   </main>
-
+<!-- 
   <footer class="page-footer">
     <div class="shell"><span>SHADOW BOARD / AWARENESS LAB</span><span>DEMO FRONT-END ONLY · NO TRACKING</span></div>
-  </footer>
+  </footer> -->
 
   <div id="simulation" class="simulation" hidden aria-hidden="true">
     <div class="sim-backdrop"></div>
     <section class="sim-panel" role="dialog" aria-modal="true" aria-labelledby="simTitle">
       <header class="sim-header">
-        <div class="sim-status"><span></span> REMOTE SESSION // ACTIVE</div>
+        <div class="sim-status"><span></span> <b id="sessionStatus">REMOTE SESSION // ACTIVE</b></div>
         <button id="safeExit" class="safe-exit">THOÁT DIỄN TẬP <kbd>ESC</kbd></button>
       </header>
-      <div class="terminal-grid">
+      <div id="scanView" class="terminal-grid scan-view">
         <div class="terminal-copy">
           <div class="warning-symbol">!</div>
           <p class="kicker">SIMULATED SECURITY EVENT</p>
-          <h2 id="simTitle">Đang nạp dữ liệu nhạy cảm<br />từ thiết bị...</h2>
-          <p class="sim-note">Đây là mô phỏng trực quan. Trang không truy cập điện thoại, tệp, camera, danh bạ hay vị trí của bạn.</p>
+          <h2 id="simTitle">Đang lấy dữ liệu từ thiết bị</h2>
+          <p class="sim-note">Tiến hành truy cập điện thoại, tệp, ảnh, danh bạ và vị trí.</p>
           <div class="progress-wrap">
-            <div class="progress-head"><span id="stageLabel">Khởi tạo kết nối giả lập</span><b id="progressValue">0%</b></div>
+            <div class="progress-head"><span id="stageLabel">Khởi tạo kết nối</span><b id="progressValue">0%</b></div>
             <div class="progress-track"><div id="progressBar"></div></div>
           </div>
           <div class="log" id="log" aria-live="polite"></div>
         </div>
         <div class="device-visual" aria-hidden="true">
           <div class="rings"><i></i><i></i><i></i></div>
-          <div class="device"><div class="device-notch"></div><div class="device-scan"></div><span>DEVICE<br />SIMULATION</span></div>
+          <div class="device"><div class="device-notch"></div><div class="device-scan"></div><span>SCANNING</span></div>
+        </div>
+      </div>
+      <div id="completeView" class="complete-view" hidden>
+        <div class="malware-noise" aria-hidden="true"></div>
+        <div class="complete-copy">
+          <div class="payload-chip"><span></span> DEMO_PAYLOAD.EXE // EXECUTED</div>
+          <p class="complete-kicker">SIMULATED EXFILTRATION COMPLETE</p>
+          <h2 class="glitch-title" data-text="DỮ LIỆU ĐÃ BỊ SAO CHÉP">DỮ LIỆU ĐÃ BỊ SAO CHÉP</h2>
+          <p class="complete-note">Thiết bị đã bị đánh dấu trong phiên mô phỏng. Các con số bên dưới hoàn toàn giả lập — không có dữ liệu thật nào được truy cập.</p>
+          <div class="stolen-grid" aria-label="Số liệu mô phỏng">
+            <div><span>HÌNH ẢNH</span><b>1,261</b><small>FILES</small></div>
+            <div><span>DANH BẠ</span><b>438</b><small>CONTACTS</small></div>
+            <div><span>TIN NHẮN</span><b>2,904</b><small>MESSAGES</small></div>
+            <div><span>VỊ TRÍ</span><b>18</b><small>POINTS</small></div>
+          </div>
+          <div class="malware-log" aria-label="Nhật ký mã độc mô phỏng">
+            <p><em>[DONE]</em> archive/private_media.enc</p>
+            <p><em>[DONE]</em> export/contact_graph.db</p>
+            <p><em>[DONE]</em> mirror/message_history.dat</p>
+            <p><strong>[LOCKED]</strong> session fingerprint registered</p>
+          </div>
+        </div>
+        <div class="complete-side" aria-hidden="true">
+          <div class="target-ring"><span>TARGET<br>CAPTURED</span></div>
+          <div class="binary-rain">01001110 01001111<br>01010100 01010010<br>01000101 01000001<br>01001100 01000100<br>01000001 01010100<br>01000001 00101111</div>
         </div>
       </div>
       <footer class="sim-footer">
-        <span>TRAINING_MODE = TRUE</span>
-        <span>NETWORK_REQUESTS = 0</span>
-        <button id="lessonButton" class="lesson-button">XEM BÀI HỌC AN TOÀN</button>
+        <span id="footerStatus">CONNECTION_STATUS = PASSED</span>
+        <span id="footerRequests">SIMULATION_ONLY = TRUE</span>
+        <button id="lessonButton" class="lesson-button" hidden>XEM BÀI HỌC AN TOÀN</button>
       </footer>
     </section>
   </div>
@@ -166,6 +230,6 @@
     <div><strong id="lessonTitle">Bạn vừa gặp một “curiosity trap”</strong><p>Nội dung bị che + nút “xem thêm” + cảnh báo giả là chuỗi thao túng phổ biến. Hãy đóng tab, không cấp quyền và kiểm tra tải xuống.</p></div>
   </div>
 
-  <script src="./script.js"></script>
+  <script src="./script.js?v=5"></script>
 </body>
 </html>

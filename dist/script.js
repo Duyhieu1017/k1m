@@ -8,25 +8,33 @@ const progressBar = document.querySelector('#progressBar');
 const progressValue = document.querySelector('#progressValue');
 const stageLabel = document.querySelector('#stageLabel');
 const log = document.querySelector('#log');
+const simPanel = document.querySelector('.sim-panel');
+const scanView = document.querySelector('#scanView');
+const completeView = document.querySelector('#completeView');
+const sessionStatus = document.querySelector('#sessionStatus');
+const footerStatus = document.querySelector('#footerStatus');
+const footerRequests = document.querySelector('#footerRequests');
 
 let timer;
+let completionTimer;
 let progress = 0;
 
 const stages = [
-  [8, 'Khởi tạo kết nối giả lập'],
-  [28, 'Đang quét thư viện ảnh (mô phỏng)'],
-  [52, 'Đang đọc danh bạ (mô phỏng)'],
-  [74, 'Đang đóng gói tin nhắn (mô phỏng)'],
-  [92, 'Đang chuẩn bị truyền dữ liệu (mô phỏng)'],
-  [100, 'Đã chặn — không có dữ liệu nào được gửi']
+  [8, 'Khởi tạo kết nối'],
+  [28, 'Đang quét thư viện ảnh'],
+  [52, 'Đang đọc danh bạ'],
+  [74, 'Đang đóng gói tin nhắn'],
+  [92, 'Đang chuẩn bị truyền dữ liệu'],
+  [100, 'Hoàn tất lấy dữ liệu']
 ];
 
 const logLines = [
-  '> sandbox handshake: demo_only',
-  '> permissions granted: none',
-  '> local files accessed: 0',
-  '> outbound requests: 0',
-  '> training safeguard: active'
+  '> connection status: connected',
+  '> permissions granted: success',
+  '> local files accessed: 1261',
+  '> phone number detected: 1261',
+  '> outbound requests: 1817',
+  '> data transferred: 100%'
 ];
 
 function updateStage() {
@@ -40,24 +48,46 @@ function updateStage() {
 
 function openSimulation() {
   clearInterval(timer);
+  clearTimeout(completionTimer);
   progress = 0;
+  simPanel.classList.remove('is-complete');
+  completeView.classList.remove('is-live');
+  scanView.hidden = false;
+  completeView.hidden = true;
+  sessionStatus.textContent = 'REMOTE SESSION // ACTIVE';
+  footerStatus.textContent = 'CONNECTION_STATUS = PASSED';
+  footerRequests.textContent = 'SIMULATION_ONLY = TRUE';
+  lessonButton.hidden = true;
   updateStage();
   simulation.hidden = false;
   simulation.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
-  safeExit.focus();
+  if (!safeExit.hidden) safeExit.focus();
   timer = setInterval(() => {
     progress = Math.min(100, progress + Math.ceil(Math.random() * 4));
     updateStage();
     if (progress === 100) {
       clearInterval(timer);
-      lessonButton.textContent = 'HIỂU CÁCH BẪY HOẠT ĐỘNG';
+      completionTimer = setTimeout(showCompleteView, 650);
     }
   }, 230);
 }
 
+function showCompleteView() {
+  scanView.hidden = true;
+  completeView.hidden = false;
+  simPanel.classList.add('is-complete');
+  sessionStatus.textContent = 'PAYLOAD // EXTRACTION COMPLETE';
+  footerStatus.textContent = 'TARGET_STATUS = CAPTURED';
+  footerRequests.textContent = 'REAL_DATA_ACCESSED = 0';
+  lessonButton.hidden = false;
+  lessonButton.textContent = 'HIỂU CÁCH BẪY HOẠT ĐỘNG';
+  requestAnimationFrame(() => completeView.classList.add('is-live'));
+}
+
 function closeSimulation(showLesson = false) {
   clearInterval(timer);
+  clearTimeout(completionTimer);
   simulation.hidden = true;
   simulation.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
