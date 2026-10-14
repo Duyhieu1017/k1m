@@ -71,7 +71,9 @@ h1 { max-width: 760px; margin: 16px 0 15px; font-size: clamp(25px, 3vw, 39px); l
 .post-copy p, .compact-post .post-body > p { color: #cbd4ce; font-size: 15px; line-height: 1.75; }
 .collapsed-copy { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
 .evidence-card { position: relative; height: 320px; margin: 24px 0 14px; overflow: hidden; border: 1px solid #2b3930; background: #090c0a; }
-.blur-art { position: absolute; inset: 0; filter: saturate(.78) contrast(1.04); background: radial-gradient(circle at 22% 40%, rgba(58,255,109,.25), transparent 30%), linear-gradient(110deg,#101814 0 35%,#37423a 36% 60%,#121a15 61%); opacity: .88; }
+.blur-art { position: absolute; inset: 0; overflow: hidden; background: #151b22; opacity: 1; }
+.evidence-photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 42%; filter: saturate(.82) contrast(1.04); transform: scale(1.015); }
+.evidence-photo--alt { object-position: center 48%; }
 .evidence-stamp { position: absolute; top: 15px; right: 16px; z-index: 2; padding: 6px 8px; color: rgba(239,246,241,.78); border: 1px solid rgba(239,246,241,.25); background: rgba(4,10,6,.28); font: 9px var(--mono); letter-spacing: .12em; }
 .phone-silhouette { position: absolute; width: 150px; height: 245px; left: 20%; top: 35px; border: 12px solid #616a64; border-radius: 24px; background: #0b0e0c; transform: rotate(-9deg); box-shadow: 70px 18px 70px rgba(74,255,120,.19); }
 .screen-lines { margin: 34px 15px; height: 110px; background: repeating-linear-gradient(180deg,#6b8a73 0 7px,transparent 7px 20px); }
@@ -336,8 +338,8 @@ nav a.active::after { background: #fff; box-shadow: none; }
 
 .evidence-card { border-color: #c8cdd3; background: #d8dde3; }
 .blur-art {
-  background: radial-gradient(circle at 22% 40%, rgba(58,107,161,.34), transparent 30%), linear-gradient(110deg,#d2dce7 0 35%,#8295a9 36% 60%,#c2ceda 61%);
-  opacity: .86;
+  background: #d8dde3;
+  opacity: 1;
 }
 .phone-silhouette { border-color: #566b82; background: #dfe6ed; box-shadow: 70px 18px 70px rgba(34,72,114,.22); }
 .screen-lines { background: repeating-linear-gradient(180deg,#7088a2 0 7px,transparent 7px 20px); }
