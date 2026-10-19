@@ -16,6 +16,35 @@ const sessionStatus = document.querySelector('#sessionStatus');
 const footerStatus = document.querySelector('#footerStatus');
 const footerRequests = document.querySelector('#footerRequests');
 
+const memberNames = ['hngoc245', 'huyenmeow', 'hungbe', 'thutrangkt', 'haprh'];
+
+function shuffledMemberNames() {
+  const names = [...memberNames];
+  for (let index = names.length - 1; index > 0; index -= 1) {
+    const randomIndex = Math.floor(Math.random() * (index + 1));
+    [names[index], names[randomIndex]] = [names[randomIndex], names[index]];
+  }
+  return names;
+}
+
+function randomizePostAuthors() {
+  const authors = [...document.querySelectorAll('.post-card .username')];
+  let pool = [];
+  let previousName = '';
+
+  authors.forEach(author => {
+    if (pool.length === 0) {
+      pool = shuffledMemberNames();
+      if (pool[0] === previousName) [pool[0], pool[1]] = [pool[1], pool[0]];
+    }
+    const name = pool.shift();
+    author.textContent = name;
+    previousName = name;
+  });
+}
+
+randomizePostAuthors();
+
 function makeExpandableCopy(copy, index) {
     copy.classList.remove('collapsed-copy');
     copy.classList.add('expandable-copy', 'is-collapsed');
