@@ -16,6 +16,43 @@ const sessionStatus = document.querySelector('#sessionStatus');
 const footerStatus = document.querySelector('#footerStatus');
 const footerRequests = document.querySelector('#footerRequests');
 
+function setupExpandablePosts() {
+  const copies = [...document.querySelectorAll('.post-copy, .compact-post .post-body > p')];
+
+  copies.forEach((copy, index) => {
+    copy.classList.remove('collapsed-copy');
+    copy.classList.add('expandable-copy', 'is-collapsed');
+    copy.id ||= `post-copy-${index + 1}`;
+
+    const toggle = document.createElement('button');
+    toggle.type = 'button';
+    toggle.className = 'read-more-toggle';
+    toggle.textContent = 'Xem thêm';
+    toggle.setAttribute('aria-controls', copy.id);
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.hidden = true;
+    copy.insertAdjacentElement('afterend', toggle);
+
+    const syncVisibility = () => {
+      if (!copy.classList.contains('is-collapsed')) return;
+      toggle.hidden = copy.scrollHeight <= copy.clientHeight + 1;
+    };
+
+    toggle.addEventListener('click', () => {
+      const willExpand = copy.classList.contains('is-collapsed');
+      copy.classList.toggle('is-collapsed', !willExpand);
+      toggle.textContent = willExpand ? 'Thu gọn' : 'Xem thêm';
+      toggle.setAttribute('aria-expanded', String(willExpand));
+      toggle.hidden = false;
+    });
+
+    requestAnimationFrame(syncVisibility);
+    new ResizeObserver(syncVisibility).observe(copy.parentElement);
+  });
+}
+
+setupExpandablePosts();
+
 let timer;
 let completionTimer;
 let progress = 0;
