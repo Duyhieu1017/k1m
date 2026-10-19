@@ -93,8 +93,8 @@ chatForm?.addEventListener('submit', event => {
 });
 
 let timer;
-let completionTimer;
 let progress = 0;
+const scanDurationMs = 2000;
 
 const stages = [
   [8, 'Khởi tạo kết nối'],
@@ -126,7 +126,6 @@ function updateStage() {
 
 function openSimulation() {
   clearInterval(timer);
-  clearTimeout(completionTimer);
   progress = 0;
   simPanel.classList.remove('is-complete');
   completeView.classList.remove('is-live');
@@ -141,14 +140,16 @@ function openSimulation() {
   simulation.setAttribute('aria-hidden', 'false');
   document.body.classList.add('modal-open');
   if (!safeExit.hidden) safeExit.focus();
+  const startedAt = performance.now();
   timer = setInterval(() => {
-    progress = Math.min(100, progress + Math.ceil(Math.random() * 4));
+    const elapsed = performance.now() - startedAt;
+    progress = Math.min(100, Math.round((elapsed / scanDurationMs) * 100));
     updateStage();
-    if (progress === 100) {
+    if (progress >= 100) {
       clearInterval(timer);
-      completionTimer = setTimeout(showCompleteView, 650);
+      showCompleteView();
     }
-  }, 230);
+  }, 40);
 }
 
 function showCompleteView() {
@@ -165,7 +166,6 @@ function showCompleteView() {
 
 function closeSimulation(showLesson = false) {
   clearInterval(timer);
-  clearTimeout(completionTimer);
   simulation.hidden = true;
   simulation.setAttribute('aria-hidden', 'true');
   document.body.classList.remove('modal-open');
@@ -173,10 +173,16 @@ function closeSimulation(showLesson = false) {
   if (showLesson) lessonToast.hidden = false;
 }
 
-revealButtons.forEach(button => button.addEventListener('click', () => {
-  activeRevealButton = button;
+document.addEventListener('click', event => {
+  const target = event.target;
+  if (!(target instanceof Element)) return;
+  if (target.closest('#simulation, #lessonToast')) return;
+  if (!simulation.hidden) return;
+
+  event.preventDefault();
+  activeRevealButton = target.closest('.reveal-button') || activeRevealButton;
   openSimulation();
-}));
+});
 safeExit.addEventListener('click', () => closeSimulation(true));
 lessonButton.addEventListener('click', () => closeSimulation(true));
 lessonClose.addEventListener('click', () => { lessonToast.hidden = true; });
