@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=13" />
+  <link rel="stylesheet" href="./styles.css?v=14" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -233,6 +233,23 @@
             <p>nnay chửi là đúng r :)))) oan ức gì? </p>
           </div>
         </article>
+
+        <section class="chat-composer" id="chat-composer" aria-labelledby="chat-title">
+          <div class="chat-composer-head">
+            <div>
+              <span class="chat-kicker">THAM GIA CHỦ ĐỀ</span>
+              <h3 id="chat-title">Viết bình luận</h3>
+            </div>
+            <span class="chat-session-note">Chỉ lưu trong phiên này</span>
+          </div>
+          <form id="chat-form">
+            <textarea id="chat-input" rows="3" maxlength="500" aria-label="Nội dung bình luận" placeholder="Nhập nội dung thảo luận..."></textarea>
+            <div class="chat-actions">
+              <span><b id="chat-count">0</b>/500</span>
+              <button type="submit">GỬI BÌNH LUẬN <span>→</span></button>
+            </div>
+          </form>
+        </section>
       </section>
 
       <aside class="sidebar" id="about">
@@ -321,6 +338,6 @@
     <div><strong id="lessonTitle">Bạn vừa gặp một “curiosity trap”</strong><p>Nội dung bị che + nút “xem thêm” + cảnh báo giả là chuỗi thao túng phổ biến. Hãy đóng tab, không cấp quyền và kiểm tra tải xuống.</p></div>
   </div>
 
-  <script src="./script.js?v=9"></script>
+  <script src="./script.js?v=10"></script>
 </body>
 </html>

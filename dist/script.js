@@ -16,10 +16,7 @@ const sessionStatus = document.querySelector('#sessionStatus');
 const footerStatus = document.querySelector('#footerStatus');
 const footerRequests = document.querySelector('#footerRequests');
 
-function setupExpandablePosts() {
-  const copies = [...document.querySelectorAll('.post-copy, .compact-post .post-body > p')];
-
-  copies.forEach((copy, index) => {
+function makeExpandableCopy(copy, index) {
     copy.classList.remove('collapsed-copy');
     copy.classList.add('expandable-copy', 'is-collapsed');
     copy.id ||= `post-copy-${index + 1}`;
@@ -48,10 +45,52 @@ function setupExpandablePosts() {
 
     requestAnimationFrame(syncVisibility);
     new ResizeObserver(syncVisibility).observe(copy.parentElement);
-  });
+}
+
+function setupExpandablePosts() {
+  const copies = [...document.querySelectorAll('.post-copy, .compact-post .post-body > p')];
+  copies.forEach(makeExpandableCopy);
 }
 
 setupExpandablePosts();
+
+const chatForm = document.querySelector('#chat-form');
+const chatInput = document.querySelector('#chat-input');
+const chatCount = document.querySelector('#chat-count');
+const chatComposer = document.querySelector('#chat-composer');
+
+chatInput?.addEventListener('input', () => {
+  chatCount.textContent = String(chatInput.value.length);
+});
+
+chatForm?.addEventListener('submit', event => {
+  event.preventDefault();
+  const message = chatInput.value.trim();
+  if (!message) {
+    chatInput.focus();
+    return;
+  }
+
+  const post = document.createElement('article');
+  post.className = 'post-card compact-post user-post';
+  post.innerHTML = `
+    <aside class="profile">
+      <div class="avatar" aria-hidden="true"><span>ME</span></div>
+      <span class="username">bạn</span>
+      <span class="rank">THÀNH VIÊN</span>
+    </aside>
+    <div class="post-body">
+      <header class="post-meta"><time>Vừa xong</time><span>Bình luận mới</span></header>
+      <p class="user-message"></p>
+    </div>`;
+  post.querySelector('.user-message').textContent = message;
+  chatComposer.insertAdjacentElement('beforebegin', post);
+  makeExpandableCopy(post.querySelector('.user-message'), document.querySelectorAll('.expandable-copy').length);
+
+  chatForm.reset();
+  chatCount.textContent = '0';
+  post.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
 
 let timer;
 let completionTimer;
