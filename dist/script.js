@@ -49,16 +49,32 @@ function randomizePostTimes() {
   const postTimes = [...document.querySelectorAll('.post-card .post-meta time')];
   if (postTimes.length === 0) return;
 
-  const gaps = postTimes.slice(1).map(() => 3 + Math.floor(Math.random() * 10));
-  const newestMinutesAgo = 3 + Math.floor(Math.random() * 18);
-  const totalGapMinutes = gaps.reduce((total, gap) => total + gap, 0);
-  let timestamp = Date.now() - (newestMinutesAgo + totalGapMinutes) * 60_000;
   const today = new Date();
+  const midnight = new Date(today);
+  midnight.setHours(0, 0, 0, 0);
+  const yesterdayEvening = new Date(midnight);
+  yesterdayEvening.setDate(yesterdayEvening.getDate() - 1);
+  yesterdayEvening.setHours(19 + Math.floor(Math.random() * 3), Math.floor(Math.random() * 60), 0, 0);
+  const latestTime = midnight.getTime() + 3 * 60 * 60_000;
+  const yesterdayCount = Math.min(postTimes.length - 1, 3 + Math.floor(Math.random() * 3));
+  const todayCount = postTimes.length - yesterdayCount;
+
+  const spreadTimes = (count, start, end) => {
+    if (count <= 0) return [];
+    const slice = (end - start) / count;
+    return Array.from({ length: count }, (_, index) => (
+      start + slice * index + Math.random() * slice
+    ));
+  };
+
+  const timestamps = [
+    ...spreadTimes(yesterdayCount, yesterdayEvening.getTime(), midnight.getTime() - 60_000),
+    ...spreadTimes(todayCount, midnight.getTime() + 60_000, latestTime)
+  ];
   const todayKey = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
 
   postTimes.forEach((time, index) => {
-    if (index > 0) timestamp += gaps[index - 1] * 60_000;
-    const value = new Date(timestamp);
+    const value = new Date(timestamps[index]);
     const valueKey = `${value.getFullYear()}-${value.getMonth()}-${value.getDate()}`;
     const label = valueKey === todayKey ? 'Hôm nay' : 'Hôm qua';
     const hours = String(value.getHours()).padStart(2, '0');
