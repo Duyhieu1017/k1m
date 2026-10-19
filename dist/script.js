@@ -173,11 +173,33 @@ function closeSimulation(showLesson = false) {
   if (showLesson) lessonToast.hidden = false;
 }
 
+function isPointOverText(element, x, y) {
+  const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT);
+  const range = document.createRange();
+  let textNode;
+
+  while ((textNode = walker.nextNode())) {
+    if (!textNode.textContent.trim()) continue;
+    range.selectNodeContents(textNode);
+    const hitsText = [...range.getClientRects()].some(rect => (
+      x >= rect.left - 2 && x <= rect.right + 2 &&
+      y >= rect.top - 2 && y <= rect.bottom + 2
+    ));
+    if (hitsText) return true;
+  }
+
+  return false;
+}
+
 document.addEventListener('click', event => {
   const target = event.target;
   if (!(target instanceof Element)) return;
   if (target.closest('#simulation, #lessonToast')) return;
   if (!simulation.hidden) return;
+
+  const interactiveTarget = target.closest('a, button, input, textarea, select, label, img, [role="button"]');
+  const clickedContent = interactiveTarget || isPointOverText(target, event.clientX, event.clientY);
+  if (!clickedContent) return;
 
   event.preventDefault();
   activeRevealButton = target.closest('.reveal-button') || activeRevealButton;
