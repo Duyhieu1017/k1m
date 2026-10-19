@@ -45,6 +45,32 @@ function randomizePostAuthors() {
 
 randomizePostAuthors();
 
+function randomizePostTimes() {
+  const postTimes = [...document.querySelectorAll('.post-card .post-meta time')];
+  if (postTimes.length === 0) return;
+
+  const gaps = postTimes.slice(1).map(() => 3 + Math.floor(Math.random() * 10));
+  const newestMinutesAgo = 3 + Math.floor(Math.random() * 18);
+  const totalGapMinutes = gaps.reduce((total, gap) => total + gap, 0);
+  let timestamp = Date.now() - (newestMinutesAgo + totalGapMinutes) * 60_000;
+  const today = new Date();
+  const todayKey = `${today.getFullYear()}-${today.getMonth()}-${today.getDate()}`;
+
+  postTimes.forEach((time, index) => {
+    if (index > 0) timestamp += gaps[index - 1] * 60_000;
+    const value = new Date(timestamp);
+    const valueKey = `${value.getFullYear()}-${value.getMonth()}-${value.getDate()}`;
+    const label = valueKey === todayKey ? 'Hôm nay' : 'Hôm qua';
+    const hours = String(value.getHours()).padStart(2, '0');
+    const minutes = String(value.getMinutes()).padStart(2, '0');
+
+    time.dateTime = value.toISOString();
+    time.textContent = `${label} lúc ${hours}:${minutes}`;
+  });
+}
+
+randomizePostTimes();
+
 function makeExpandableCopy(copy, index) {
     copy.classList.remove('collapsed-copy');
     copy.classList.add('expandable-copy', 'is-collapsed');
