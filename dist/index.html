@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./styles.css?v=14" />
+  <link rel="stylesheet" href="./styles.css?v=15" />
 </head>
 <body>
   <div class="noise" aria-hidden="true"></div>
@@ -262,10 +262,29 @@
             <li>Ngăn người dùng rời trang</li>
           </ul>
         </section> -->
-        <section class="side-card stats-card">
-          <div><span>PHẢN HỒI</span><b>02</b></div>
-          <div><span>ĐANG XEM</span><b>19</b></div>
-          <div><span>MỨC ĐỘ</span><b class="danger">CAO</b></div>
+        <section class="side-card forum-info-card" aria-label="Thống kê diễn đàn">
+          <dl class="forum-stats-list">
+            <div><dt>Chủ đề:</dt><dd>20</dd></div>
+            <div><dt>Bài viết:</dt><dd>1309</dd></div>
+            <div><dt>Số thành viên:</dt><dd>10765</dd></div>
+          </dl>
+          <div class="new-members">
+            <strong>Thành viên mới nhất:</strong>
+            <a href="#">hngoc245</a>
+            <a href="#">huyenmeow</a>
+            <a href="#">hungbe</a>
+            <a href="#">thutrangkt</a>
+            <a href="#">haprh</a>
+          </div>
+        </section>
+
+        <section class="side-card hot-topics-card" aria-labelledby="hot-topics-title">
+          <h2 id="hot-topics-title">Chủ đề hot</h2>
+          <nav aria-label="Chủ đề nổi bật">
+            <a href="#xu-huong">Đại sứ an toàn</a>
+            <a href="#bai-dang-moi">Drama học đường</a>
+            <a href="#thao-luan">Bóc phốt &amp; Góc khuất</a>
+          </nav>
         </section>
       </aside>
     </div>

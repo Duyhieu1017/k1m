@@ -395,6 +395,21 @@ nav a.active::after { background: #fff; box-shadow: none; }
 .rings i { border-color: rgba(126,181,233,.18); }
 .lesson-button { color: #dceafa; border-color: #567797; background: #23466f; }
 
+.forum-info-card, .hot-topics-card { padding: 0; overflow: hidden; }
+.forum-stats-list { margin: 0; padding: 17px 18px 12px; }
+.forum-stats-list div { display: flex; align-items: baseline; gap: 5px; margin-bottom: 14px; }
+.forum-stats-list dt { color: #2d333a; font-size: 13px; font-weight: 700; }
+.forum-stats-list dd { margin: 0; color: #2d333a; font-size: 13px; }
+.new-members { padding: 0 18px 18px; }
+.new-members strong { display: block; margin-bottom: 4px; color: #2d333a; font-size: 13px; }
+.new-members a { display: block; width: fit-content; color: #345e8d; font-size: 13px; line-height: 1.45; }
+.new-members a:hover { color: #173e69; text-decoration: underline; }
+.hot-topics-card h2 { margin: 0; padding: 10px 13px; border-bottom: 1px solid #d2d5d9; color: #202a35; font-size: 14px; }
+.hot-topics-card nav { display: grid; }
+.hot-topics-card nav a { padding: 15px 13px; border-bottom: 1px solid #eceef0; color: #2d333a; font-size: 13px; line-height: 1.35; }
+.hot-topics-card nav a:last-child { border-bottom: 0; }
+.hot-topics-card nav a:hover { color: #23466f; background: #f4f7fa; }
+
 .chat-composer { padding: 22px 24px 20px; border: 1px solid #d2d5d9; border-top: 3px solid #23466f; background: #fff; box-shadow: 0 2px 5px rgba(25,40,58,.07); }
 .chat-composer-head, .chat-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .chat-kicker { color: #6f7882; font: 600 9px var(--mono); letter-spacing: .13em; }
